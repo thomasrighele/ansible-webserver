@@ -6,7 +6,6 @@ pool:
    name: 'default'
 
 steps:
-
  - script: |
          echo "First pipeline script"
          echo "Another line of code"
@@ -27,11 +26,18 @@ steps:
         ansible-lint
    displayName: "Run ansible-lint"
 
- - script: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
-   displayName: 'Installing Apache'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)'
+    ArtifactName: 'ansible-artifact'
+    publishLocation: 'Container'
+
+
+#  - script: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
+#    displayName: 'Installing Apache'
    
- - script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-update.yml --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
-   displayName: 'Running Website-Update'
+#  - script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-update.yml --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
+#    displayName: 'Running Website-Update'
    
- - script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-test.yml --private-key '/home/ubuntu/.ssh/vm-instance-key.pem'
-   displayName: 'Running Website-Test'
+#  - script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-test.yml --private-key '/home/ubuntu/.ssh/vm-instance-key.pem'
+#    displayName: 'Running Website-Test'
