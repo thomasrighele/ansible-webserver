@@ -16,3 +16,9 @@ steps:
          sudo apt install -y ansible
          ansible --version
    displayName: "Installing Ansible"
+
+ - script: |
+        sudo apt-get update -y
+        sudo apt-get install -y ansible-lint
+        ansible-lint --version
+   displayName: "Installing Ansible lint"
