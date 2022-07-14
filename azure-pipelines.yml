@@ -1,0 +1,11 @@
+# Ansible Azure Pipeline
+trigger:
+ - master
+
+pool:
+   vmImage: 'ubuntu-20.04'
+
+steps:
+
+ - script: |
+         echo "First pipeline script"
