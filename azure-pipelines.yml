@@ -24,10 +24,10 @@ steps:
 
  - script: |
         ansible-lint
-   displayName: "Run ansible-lint"
+   displayName: 'Run ansible-lint'
 
-- task: PublishBuildArtifacts@1
-  inputs:
+ - task: PublishBuildArtifacts@1
+   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)'
     ArtifactName: 'ansible-artifact'
     publishLocation: 'Container'
