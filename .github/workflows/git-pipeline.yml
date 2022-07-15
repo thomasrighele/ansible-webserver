@@ -1,0 +1,7 @@
+name: Ansible-GitHub actions
+on: push
+jobs:
+  repo_updated:
+    runs-on: self-hosted
+    steps:
+     - uses: actions/checkout@main
