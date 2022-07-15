@@ -38,5 +38,5 @@ jobs:
     steps:
      - name: Installing apache
        run: |
-        workdir=“${GITHUB_WORKSPACE}”
+        workdir="${GITHUB_WORKSPACE}"
         ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i $workdir/host_inventory $workdir/playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
